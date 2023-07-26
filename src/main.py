@@ -10,7 +10,7 @@ if __name__ == "__main__":
     data_input_folder = "../data/input/"
 
     # Carrega os eventos em um DataFrame do Spark
-    df = spark.read.json(data_input_folder)
+    df = spark.read.json(data_input_folder, multiLine=True)
     
     # Pasta contendo os arquivos dos eventos processados
     data_output_folder = "../data/output/"

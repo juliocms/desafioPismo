@@ -14,7 +14,7 @@ domains = ["account", "transaction"]
 event_types = ["status-change", "transfer"]
 
 # Pasta para o mock de eventos gerados
-data_input_folder = "data/input"
+data_input_folder = "../../data/input"
 
 # Pasta onde ficarão os eventos gerados após execução do desafio
 os.makedirs(data_input_folder, exist_ok=True)
