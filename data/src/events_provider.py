@@ -1,0 +1,1 @@
+# Este arquivo conterá o mock de eventos para a execução do desafio
