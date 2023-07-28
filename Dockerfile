@@ -9,8 +9,6 @@ FROM openjdk:${OPENJDK_VERSION}-${IMAGE_VARIANT}
 
 COPY --from=py3 / /
 
-# RUN pip --no-cache-dir install pyspark
-
 # Define o diretório de trabalho dentro do container
 WORKDIR /app/scripts
 
@@ -22,7 +20,3 @@ COPY requirements.txt /app/
 
 # Instala as dependências do Pythonc
 RUN pip install -r /app/requirements.txt
-
-
-# Define o comando padrão que será executado quando o container for iniciado
-# CMD ["python3", "/app/src/event_dispatcher.py"]
