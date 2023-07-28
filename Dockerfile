@@ -1,17 +1,28 @@
-# Imagem do  Python
-FROM python:3.9-slim
+# Use uma imagem base do Apache Spark que já inclua o Java, como "bde2020/spark-base"
+# FROM bde2020/spark-base:3.1.1-hadoop3.2
+ARG IMAGE_VARIANT=slim-buster
+ARG OPENJDK_VERSION=8
+ARG PYTHON_VERSION=3.9.8
 
-# Pasta principal dentro do container onde ficaram os arquivos para execução do desafio
-WORKDIR /desafioPismo
+FROM python:${PYTHON_VERSION}-${IMAGE_VARIANT} AS py3
+FROM openjdk:${OPENJDK_VERSION}-${IMAGE_VARIANT}
 
-# Arquivo requirements.txt que contém as libs necessárias para execução dos arquivos python
-COPY requirements.txt .
+COPY --from=py3 / /
 
-# Instalação das bibliotecas python
-RUN pip install --no-cache-dir -r requirements.txt
+# RUN pip --no-cache-dir install pyspark
 
-# Cópia do código do desafio para o contêiner
-COPY . .
+# Define o diretório de trabalho dentro do container
+WORKDIR /app/scripts
 
-# Comando para executar o código principal do projeto
-CMD ["python", "src/main.py"]
+# Copia o código fonte e os arquivos necessários para o diretório de trabalho
+COPY src/ /app/src/
+COPY data/ /app/data/
+COPY scripts/ /app/scripts/
+COPY requirements.txt /app/
+
+# Instala as dependências do Pythonc
+RUN pip install -r /app/requirements.txt
+
+
+# Define o comando padrão que será executado quando o container for iniciado
+# CMD ["python3", "/app/src/event_dispatcher.py"]
