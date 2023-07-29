@@ -1,32 +1,53 @@
-import os
+import pytest
 from pyspark.sql import SparkSession
-# from event_dispatcher import event_dispatcher
+import sys
 
-def event_tests():
-    
-    # Inicia o SparkSession
-    spark = SparkSession\
-                .builder\
-                .appName("DesafioPismoTest")\
-                .getOrCreate()
-                
-    # Pasta com os arquivos de entrada para o teste
-    data_input_events = "../data/input"
-    
-    # Carrega os arquivos json de entrada do teste para um Dataframe
-    df = spark.read.json(data_input_events)
-    
-    # Pasta com os arquivos de saida dos eventso processados para o teste
-    data_input_events = "../data/output"
-    
-    # Executa o dispatcher de eventos. É onde acontece a execução do desafio
-    # event_dispatcher(blablabla)
-    
-    # Checa se os diretorios de saida foram criados
-    # assert blablabla
-    
-    # Checa se os arquivos dos eventos foram particionados corretamente
-    # assert blablabla
-    
-    # Interrompe o SparkSession
-    spark.stop()
+sys.path.insert(0, '../src')
+from event_dispatcher import EventDispatcher
+
+def test_load_events():
+    # Cria uma instância da classe EventDispatcher
+    event_dispatcher = EventDispatcher()
+
+    # Folder com dados de entrada para os testes
+    data_input_folder = "../data/input/"
+
+    # Testa o método load_events se carrega os eventos corretamente
+    try:
+        event_dispatcher.load_events(data_input_folder)
+    except Exception as e:
+        pytest.fail(f"Erro ao carregar os eventos: {str(e)}")
+
+def test_transform_events():
+    # Cria uma instância da classe EventDispatcher
+    event_dispatcher = EventDispatcher()
+
+    # Folder com dados de entrada para os testes
+    data_input_folder = "../data/input/"
+
+    # Carrega os eventos para o teste
+    event_dispatcher.load_events(data_input_folder)
+
+    # Verifica se o método transform_events transforma os eventos corretamente
+    try:
+        event_dispatcher.transform_events()
+    except Exception as e:
+        pytest.fail(f"Erro ao transformar os eventos: {str(e)}")
+
+def test_save_events():
+    # Cria uma instância da classe EventDispatcher
+    event_dispatcher = EventDispatcher()
+
+    # Folder com dados de entrada e saída para os testes
+    data_input_folder = "../data/input/"
+    data_output_folder = "output/"
+
+    # Carrega e transforma os eventos para o teste
+    event_dispatcher.load_events(data_input_folder)
+    event_dispatcher.transform_events()
+
+    # Verifica se o método save_events salva os eventos corretamente
+    try:
+        event_dispatcher.save_events(data_output_folder)
+    except Exception as e:
+        pytest.fail(f"Erro ao salvar os eventos: {str(e)}")
