@@ -16,11 +16,11 @@ docker run -it desafio_pismo
 
 ### Passo 3: Executar o script `run_event_dispatcher.sh`
 
-Dentro do container, você estará no diretório `/app`, onde o script `run_event_dispatcher.sh` está localizado. Antes voce pode checar que a pasta de saida dos arquivos esá vazia executando o comando: `ls ../data/output`. Para executar o script, basta digitar o seguinte comando:
+Dentro do container, você estará no diretório `/app`, onde o script `run_event_dispatcher.sh` está localizado. Antes você pode checar que a pasta de saída dos arquivos está vazia executando o comando: `ls ../data/output`. Para executar o script, basta digitar o seguinte comando:
 
 ./run_event_dispatcher.sh
 
-Os arquivos parquet gerados são salvos na pasta /app/data/output dentro do container apos a execução do comando acima. Agora voce consegue ver os arquivos gerados executando o comando: `ls ../data/output`.
+Os arquivos parquet gerados são salvos na pasta /app/data/output dentro do container após a execução do comando acima. Agora você consegue ver os arquivos gerados executando o comando: `ls ../data/output`.
 
 ### Passo 4: Copiar os arquivos Parquet gerados
 
@@ -38,13 +38,13 @@ Isso conclui o guia para executar o projeto e visualizar os resultados no Desafi
 
 _______________________________
 
-## Documentação - Dificuldades Durante a Contrução do Desafio
+## Documentação - Dificuldades Durante a Construção do Desafio
 
-### Dificuldade 1: Costrução dos Dados de Input
+### Dificuldade 1: Construção dos Dados de Input
 
-A principal dificuldade foi encontrar uma maneira de repetir os eventos e colocar mais de um evento distinto na mesma data. Eu pensei em diversas formas, por exemplo criar um script bash e copiar os que ja esistiam com nomes diferentes ou pelo proprio python, no final realizar a cópia. Mas acredito que esta foi a melhor forma.
+A principal dificuldade foi encontrar uma maneira de repetir os eventos e colocar mais de um evento distinto na mesma data. Eu pensei em diversas formas, por exemplo criar um script bash e copiar os que já existiam com nomes diferentes ou pelo próprio python, no final realizar a cópia. Mas acredito que esta foi a melhor forma.
 
-Depois que fiz a repetição dos eventos ficou um pouco mais fácil aplicar a mesma lógica para colocar pelo menos 2 eventos na mesma data e assim certificar de que no arquivo parquet contemplava os 2 eventso
+Depois que fiz a repetição dos eventos ficou um pouco mais fácil aplicar a mesma lógica para colocar pelo menos 2 eventos na mesma data e assim certificar de que no arquivo parquet contemplava os 2 eventos
 
 
 ### Dificuldade 2: Campo `Data` do Json de Entrada
