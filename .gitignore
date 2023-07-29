@@ -1,0 +1,17 @@
+# Ignorar a pasta "data"
+data/
+
+# Ignorar "__pycache__" dentro de "src"
+src/__pycache__/
+
+# Ignorar "__pycache__" dentro de "tests"
+tests/__pycache__/
+
+# Ignorar ".pytest_cache" dentro de "tests"
+tests/.pytest_cache/
+
+# Ignorar "output" dentro de "tests"
+tests/output/
+
+# Ignorar ".pytest_cache" na pasta raiz do projeto
+.pytest_cache/
