@@ -1,5 +1,5 @@
 # Ignorar a pasta "data"
-data/
+data/output/
 
 # Ignorar "__pycache__" dentro de "src"
 src/__pycache__/
